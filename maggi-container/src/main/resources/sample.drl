@@ -1,0 +1,12 @@
+import com.drykode.maggi.container.engines.drools.models.SessionInput;
+import com.drykode.maggi.container.engines.drools.models.SessionOutputCollector;
+
+global com.drykode.maggi.container.engines.drools.models.SessionOutputCollector soc;
+dialect  "java"
+
+rule "execute job" when
+      si : SessionInput(input!=null)
+then
+      String result = si.getInput();
+      soc.add(result);
+end
