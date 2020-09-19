@@ -81,6 +81,8 @@ public class TaskProcessor {
   }
 
   private void publishProgress(Task task) {
+    log.info("Task progress published {}", task.toString());
+
     progressPublisher.publish(
         TaskProgressEvent.builder()
             .taskId(task.getId())
