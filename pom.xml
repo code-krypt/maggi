@@ -33,6 +33,7 @@
     <springfox.swagger2.version>2.9.2</springfox.swagger2.version>
     <aws.sqs.java.messaging.version>1.0.8</aws.sqs.java.messaging.version>
     <aws.java.sdk.version>1.11.106</aws.java.sdk.version>
+    <jython.version>2.7.2</jython.version>
   </properties>
 
   <dependencies>
