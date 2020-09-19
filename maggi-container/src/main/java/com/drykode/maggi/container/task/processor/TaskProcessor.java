@@ -32,8 +32,12 @@ public class TaskProcessor {
   public void process(Task task) {
     TaskInput taskInput = extractSourceFiles(task); // extract
     TaskOutput taskOutput = executeTask(taskInput, task); // transform
-    loadToSink(taskOutput, task); // load
-    publishProgress(task); // publish updates to job-manager
+    if (taskOutput == null) {
+      publishProgress(task, TaskStatus.FAILED); // publish failed to job-manager
+    } else {
+      loadToSink(taskOutput, task); // load
+      publishProgress(task, TaskStatus.SUCCESS); // publish success to job-manager
+    }
   }
 
   private TaskInput extractSourceFiles(Task task) {
@@ -52,20 +56,26 @@ public class TaskProcessor {
                 })
             .collect(Collectors.toMap(key -> key.get(0), value -> value.get(1)));
 
-    log.info("Task input files " + files.toString());
-
     return TaskInput.builder().inputs(files).build();
   }
 
   private TaskOutput executeTask(TaskInput taskInput, Task task) {
     String programCode = task.getProgramCode();
-    log.info("Execute Task {} + {}", programCode, taskInput.toString());
-    return taskExecutor.execute(programCode, taskInput);
+    TaskOutput result;
+
+    try {
+      result = taskExecutor.execute(programCode, taskInput);
+    } catch (Exception exception) {
+      log.error("Task Execution Failed", exception);
+      result = null;
+    }
+
+    return result;
   }
 
   private void loadToSink(TaskOutput taskOutput, Task task) {
 
-    log.info("Load to sink {}", taskOutput.toString());
+    log.info("Load to sink initiating");
 
     Map<String, String> results = taskOutput.getOutputs();
 
@@ -80,15 +90,15 @@ public class TaskProcessor {
         });
   }
 
-  private void publishProgress(Task task) {
-    log.info("Task progress published {}", task.toString());
+  private void publishProgress(Task task, TaskStatus taskStatus) {
+    log.info("Task progress published for Job ID {}", task.getJobId());
 
     progressPublisher.publish(
         TaskProgressEvent.builder()
             .taskId(task.getId())
             .jobId(task.getJobId())
             .submitterApiKey(task.getSubmitterApiKey())
-            .status(TaskStatus.SUCCESS)
+            .status(taskStatus)
             .build());
   }
 }
