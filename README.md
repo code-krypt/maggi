@@ -1,8 +1,8 @@
 ## Maggi
 
 ### Maggi Stacks
-- [Maggi Dashboad]("https://github.com/sangeethapradeep/maggi-dashbaord")
-- [Maggi Launcher]("https://github.com/code-krypt/maggi-launcher")
+- [Maggi Dashboad](https://github.com/sangeethapradeep/maggi-dashbaord)
+- [Maggi Launcher](https://github.com/code-krypt/maggi-launcher)
 
 ### Inspiration
 Due to the pandemic, a lot of people have lost access to their high-powered workstations in the office and are forced to work on comparatively weaker hardware i.e. unless you were willing to transport the whole desk to your place or by investing in expensive cloud solutions, not exactly the easiest pills to swallow for most people. 
@@ -18,7 +18,7 @@ buckets) as a job request.
 - We also have a token reward system in place to incentivize users to contribute to the network.
 
 ### How we built it
-![System Architecture]("docs/images/architecture.png")
+![System Architecture](docs/images/architecture.png)
 
 ### Challenges we ran into
 As of now, we still haven’t managed to entirely decentralize it as we still require a master node to delegate job requests to suitable nodes. However, since the master node isn’t exactly involved in the computing process, we don’t consider this a dealbreaker.
