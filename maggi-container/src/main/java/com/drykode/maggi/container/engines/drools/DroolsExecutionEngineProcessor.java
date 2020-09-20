@@ -1,9 +1,9 @@
 package com.drykode.maggi.container.engines.drools;
 
+import com.drykode.maggi.container.engines.ExecutionEngineProcessor;
 import com.drykode.maggi.container.engines.drools.exceptions.DroolsBuildException;
 import com.drykode.maggi.container.engines.drools.models.SessionInput;
 import com.drykode.maggi.container.engines.drools.models.SessionOutputCollector;
-import com.drykode.maggi.container.engines.ExecutionEngineProcessor;
 import com.drykode.maggi.container.task.models.TaskInput;
 import com.drykode.maggi.container.task.models.TaskOutput;
 import java.util.HashMap;
@@ -20,6 +20,7 @@ import org.springframework.beans.factory.config.ConfigurableBeanFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
+@Deprecated
 @Component
 @Slf4j
 @Scope(ConfigurableBeanFactory.SCOPE_PROTOTYPE)

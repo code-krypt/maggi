@@ -18,7 +18,6 @@ public class JobListener {
   @JmsListener(destination = "${maggi.client.job.submit.queue}")
   public void listen(@Payload final Message<Job> jobMessage) {
     Job job = jobMessage.getPayload();
-    log.info(job.toString());
     jobManager.process(job);
   }
 }

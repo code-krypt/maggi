@@ -1,4 +1,4 @@
-package com.drykode.maggi.client.api.swagger;
+package com.drykode.maggi.client.api.configs;
 
 import java.util.Set;
 import lombok.extern.slf4j.Slf4j;

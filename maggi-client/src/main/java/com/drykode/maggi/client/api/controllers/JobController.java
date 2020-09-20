@@ -1,9 +1,10 @@
 package com.drykode.maggi.client.api.controllers;
 
 import com.drykode.maggi.client.api.dtos.JobDto;
+import com.drykode.maggi.client.api.dtos.JobProgressDto;
 import com.drykode.maggi.client.api.exceptions.RequestIdPresentException;
 import com.drykode.maggi.client.api.services.JobService;
-import java.util.Map;
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -31,8 +32,8 @@ public class JobController {
   }
 
   @GetMapping("/")
-  public ResponseEntity<Map<String, String>> fetchJobs() {
-    Map<String, String> result = jobService.fetchJobs();
+  public ResponseEntity<List<JobProgressDto>> fetchJobs() {
+    List<JobProgressDto> result = jobService.fetchJobs();
     return new ResponseEntity<>(result, HttpStatus.OK);
   }
 }
