@@ -22,7 +22,7 @@ public class MessageProducer {
 
   public <I extends Serializable> void send(String queue, I payload) {
     jmsTemplate.send(queue, session -> createMessage(payload, session));
-    log.info("Message pushed to MQ.");
+    log.debug("Message pushed to MQ.");
   }
 
   private <I extends Serializable> Message createMessage(I payload, Session session) {

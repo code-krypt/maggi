@@ -51,6 +51,13 @@
       <version>${drools-version}</version>
     </dependency>
 
+    <!-- Jython -->
+    <dependency>
+      <groupId>org.python</groupId>
+      <artifactId>jython</artifactId>
+      <version>${jython.version}</version>
+    </dependency>
+
     <!-- Maggi Core -->
     <dependency>
       <groupId>com.drykode.maggi</groupId>

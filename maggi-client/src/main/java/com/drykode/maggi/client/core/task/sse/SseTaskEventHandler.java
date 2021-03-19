@@ -3,7 +3,6 @@ package com.drykode.maggi.client.core.task.sse;
 import com.drykode.maggi.client.core.task.TaskEventHandler;
 import com.drykode.maggi.container.task.processor.TaskProcessor;
 import com.drykode.maggi.core.domain.task.core.Task;
-import java.time.LocalTime;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -48,11 +47,6 @@ public class SseTaskEventHandler implements TaskEventHandler {
   }
 
   private void logEvent(ServerSentEvent<Task> content) {
-    log.info(
-        "Time: {} - event: name[{}], id [{}], content[{}] ",
-        LocalTime.now(),
-        content.event(),
-        content.id(),
-        content.data());
+    log.info("SSE Event received. Job ID {}", content.data());
   }
 }
